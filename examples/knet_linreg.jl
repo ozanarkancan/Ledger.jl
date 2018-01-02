@@ -25,7 +25,8 @@ function train(w, x, y; lr=.1, epochs=20)
 end
 
 function experimentf(;seed=-1, epochs=20, lr=0.1, test=0.0, winit=0.1)
-    w = map(Array{Float32}, [ 0.1*randn(1,13), 0.1*randn(1,1) ])
+    srand(seed)
+    w = map(Array{Float32}, [winit*randn(1,13), winit*randn(1,1) ])
     (xtrn,ytrn,xtst,ytst) = map(Array{Float32}, Main.housing(test))
     experiment_log = []
 
