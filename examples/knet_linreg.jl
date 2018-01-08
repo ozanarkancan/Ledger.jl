@@ -37,13 +37,14 @@ function experimentf(;seed=-1, epochs=20, lr=0.1, test=0.0, winit=0.1)
         train(w, xtrn, ytrn; lr=lr, epochs=1)
         push!(experiment_log, Dict("epoch" => i, "train-mse" => loss(w, xtrn, ytrn), "test-mse" => loss(w, xtst, ytst)))
         println(experiment_log[end])
+        sleep(0.5)
     end
     return experiment_log, Dict("test-mse" => loss(w, xtst, ytst))
 end
 
 function main()
     engine = LedgerEngine("mongodb://localhost:27017")
-    configf = Dict(:seed=>123, :epochs=>10, :lr=>0.1, :test=>0.0, :winit=>0.1)
+    configf = Dict(:seed=>123, :epochs=>100, :lr=>0.1, :test=>0.0, :winit=>0.1)
     Ledger.run(engine, "housing", "linear-regression", experimentf, configf, ["epoch", "train-mse", "test-mse"])
 end
 

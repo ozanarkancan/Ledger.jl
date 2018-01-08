@@ -4,4 +4,4 @@
 
 - [ ] Write tests
 - [ ] Write README
-- [ ] Handle Interruptions
+- [x] Handle Interruptions
